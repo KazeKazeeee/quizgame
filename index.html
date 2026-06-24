@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VocabAI Quiz Demo</title>
+<style>
+:root{--primary:#2767d8;--primary2:#6f42c1;--bg:#f4f7fb;--card:#fff;--text:#1f2a44;--muted:#68738b;--ok:#198754;--bad:#dc3545;--warn:#f0ad4e;--shadow:0 12px 30px rgba(33,53,85,.12)}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eef4ff,#f8f4ff);color:var(--text);min-height:100vh}
+header{height:68px;background:#fff;border-bottom:1px solid #e4e9f2;display:flex;align-items:center;justify-content:space-between;padding:0 42px;position:sticky;top:0;z-index:5}
+.brand{font-weight:800;font-size:24px;color:var(--primary)} .brand span{color:var(--primary2)}
+.badge{background:#eef4ff;color:var(--primary);padding:8px 13px;border-radius:20px;font-weight:700;font-size:13px}
+main{max-width:1100px;margin:0 auto;padding:42px 28px 60px}.hidden{display:none!important}
+.hero{display:grid;grid-template-columns:1.3fr .8fr;gap:30px;align-items:stretch}.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:34px}
+h1{font-size:42px;line-height:1.15;margin:0 0 15px}.lead{font-size:18px;line-height:1.65;color:var(--muted)}
+.feature{display:flex;gap:12px;margin:18px 0}.icon{width:38px;height:38px;border-radius:12px;background:#eef4ff;display:grid;place-items:center;font-weight:800;color:var(--primary)}
+.topic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}.topic{border:1px solid #dfe6f2;border-radius:14px;padding:15px;cursor:pointer;background:#fff;text-align:left}.topic:hover,.topic.active{border-color:var(--primary);background:#f2f6ff}.topic b{display:block;margin-bottom:4px}.topic small{color:var(--muted)}
+button{border:0;border-radius:12px;padding:13px 18px;font-weight:700;cursor:pointer;font-size:15px}.btn-primary{background:linear-gradient(90deg,var(--primary),var(--primary2));color:#fff}.btn-secondary{background:#eef1f6;color:var(--text)}.btn-hint{background:#fff4db;color:#8b5a00;border:1px solid #f4d58b}.wide{width:100%;margin-top:18px}
+.progress-wrap{height:11px;background:#e7ecf5;border-radius:20px;overflow:hidden}.progress{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));width:30%}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.question{font-size:30px;font-weight:800;margin:20px 0 10px}.sub{color:var(--muted);margin-bottom:22px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:13px}.answer{padding:16px;border:1px solid #dfe6f2;border-radius:14px;background:#fff;text-align:left;font-size:16px}.answer:hover{border-color:var(--primary);background:#f4f7ff}.answer.correct{border-color:var(--ok);background:#eaf7ef}.answer.wrong{border-color:var(--bad);background:#fff0f1}.letter{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#eef1f6;margin-right:10px;font-weight:800}
+.feedback{margin-top:18px;border-radius:14px;padding:17px;background:#f5f8fd;border-left:5px solid var(--primary);line-height:1.55}.feedback.ok{border-left-color:var(--ok);background:#edf8f1}.feedback.bad{border-left-color:var(--bad);background:#fff1f2}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}.stat{padding:18px;border-radius:16px;background:#f6f8fc;text-align:center}.stat strong{font-size:30px;display:block}.weak-list{display:grid;gap:10px}.weak{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border:1px solid #e2e7f0;border-radius:12px}.weak em{font-style:normal;color:var(--muted);font-size:14px}.ai-box{background:linear-gradient(135deg,#eef4ff,#f7efff);border:1px solid #dce5fb;border-radius:16px;padding:18px;margin:18px 0;line-height:1.6}.footer-note{text-align:center;color:var(--muted);margin-top:32px;font-size:13px}
+@media(max-width:760px){header{padding:0 18px}.hero{grid-template-columns:1fr}.answers,.topic-grid,.stat-grid{grid-template-columns:1fr}h1{font-size:32px}main{padding:25px 16px}}
+</style>
+</head>
+<body>
+<header><div class="brand">Vocab<span>AI</span> Quiz</div><div class="badge">Bản demo học từ vựng</div></header>
+<main>
+<section id="home" class="screen">
+  <div class="hero">
+    <div class="card">
+      <h1>Học từ vựng qua câu hỏi ngắn và gợi ý phù hợp</h1>
+      <p class="lead">Mỗi lượt gồm 10 câu. Hệ thống ưu tiên những từ người học hay sai, đưa phản hồi ngay và đề xuất từ cần ôn lại.</p>
+      <div class="feature"><div class="icon">1</div><div><b>Chọn chủ đề</b><div class="lead" style="font-size:15px">Từ vựng gần với đời sống sinh viên.</div></div></div>
+      <div class="feature"><div class="icon">2</div><div><b>Làm quiz và nhận phản hồi</b><div class="lead" style="font-size:15px">Biết đúng, sai và xem ví dụ ngay sau mỗi câu.</div></div></div>
+      <div class="feature"><div class="icon">3</div><div><b>Ôn lại từ khó</b><div class="lead" style="font-size:15px">Lịch sử làm bài được dùng để chọn câu hỏi phù hợp hơn.</div></div></div>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">Chọn chủ đề</h2>
+      <div id="topicGrid" class="topic-grid"></div>
+      <button id="startBtn" class="btn-primary wide">Bắt đầu 10 câu</button>
+      <button id="resetBtn" class="btn-secondary wide">Xóa lịch sử học</button>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="screen hidden">
+  <div class="card">
+    <div class="quiz-top"><b id="topicTitle">Chủ đề</b><span id="counter">Câu 1/10</span></div>
+    <div class="progress-wrap"><div id="progress" class="progress"></div></div>
+    <div id="word" class="question">library</div>
+    <div id="prompt" class="sub">Từ trên có nghĩa gần đúng nhất là gì?</div>
+    <div id="answers" class="answers"></div>
+    <div id="feedback" class="feedback hidden"></div>
+    <div class="actions">
+      <button id="hintBtn" class="btn-hint">Gợi ý AI</button>
+      <button id="nextBtn" class="btn-primary hidden">Câu tiếp theo</button>
+    </div>
+  </div>
+</section>
+
+<section id="result" class="screen hidden">
+  <div class="card">
+    <h1 style="font-size:34px">Kết quả lượt chơi</h1>
+    <p class="lead">Hệ thống đã lưu kết quả để ưu tiên ôn lại những từ còn yếu trong lần sau.</p>
+    <div class="stat-grid">
+      <div class="stat"><strong id="score">80</strong><span>Điểm / 100</span></div>
+      <div class="stat"><strong id="correctCount">8</strong><span>Câu đúng</span></div>
+      <div class="stat"><strong id="wrongCount">2</strong><span>Câu cần ôn</span></div>
+    </div>
+    <h2>Từ cần ôn lại</h2>
+    <div id="weakList" class="weak-list"></div>
+    <div class="ai-box"><b>Gợi ý học tiếp:</b><div id="aiAdvice">Hãy ôn lại các từ sai sau 1 ngày, sau đó thử làm lại một lượt ngắn.</div></div>
+    <div class="actions"><button id="homeBtn" class="btn-secondary">Chọn chủ đề khác</button><button id="retryBtn" class="btn-primary">Ôn từ sai</button></div>
+  </div>
+</section>
+<div class="footer-note">Demo chạy trực tiếp trên trình duyệt và lưu lịch sử bằng localStorage. Không thu thập dữ liệu cá nhân.</div>
+</main>
+<script>
+const topics={
+  "Campus Life":[
+    {w:"library",m:"thư viện",e:"I study in the library after class.",h:"Nơi sinh viên mượn sách và học nhóm."},
+    {w:"dormitory",m:"ký túc xá",e:"My dormitory is near the campus.",h:"Nơi ở dành cho sinh viên."},
+    {w:"assignment",m:"bài tập được giao",e:"I submit my assignment on Friday.",h:"Việc giảng viên giao để làm ở nhà hoặc trên lớp."},
+    {w:"lecture",m:"bài giảng",e:"The lecture starts at eight.",h:"Nội dung được giảng viên trình bày."},
+    {w:"semester",m:"học kỳ",e:"This semester has fifteen weeks.",h:"Một giai đoạn học trong năm học."},
+    {w:"scholarship",m:"học bổng",e:"She received a scholarship.",h:"Khoản hỗ trợ học tập dựa trên thành tích hoặc hoàn cảnh."},
+    {w:"laboratory",m:"phòng thí nghiệm",e:"We practice in the computer laboratory.",h:"Nơi thực hành và làm thí nghiệm."},
+    {w:"deadline",m:"hạn chót",e:"The deadline is next Monday.",h:"Thời điểm cuối cùng phải hoàn thành công việc."}
+  ],
+  "Technology":[
+    {w:"upload",m:"tải lên",e:"Please upload the file.",h:"Đưa tệp từ máy lên hệ thống."},
+    {w:"download",m:"tải xuống",e:"I download the document.",h:"Lấy tệp từ mạng về máy."},
+    {w:"database",m:"cơ sở dữ liệu",e:"The app stores words in a database.",h:"Nơi lưu dữ liệu có tổ chức."},
+    {w:"network",m:"mạng máy tính",e:"The network is stable today.",h:"Hệ thống kết nối nhiều thiết bị."},
+    {w:"password",m:"mật khẩu",e:"Use a strong password.",h:"Chuỗi bí mật để đăng nhập."},
+    {w:"browser",m:"trình duyệt",e:"Open the page in a browser.",h:"Phần mềm dùng để mở trang web."},
+    {w:"device",m:"thiết bị",e:"This device has a touch screen.",h:"Máy hoặc công cụ điện tử."},
+    {w:"software",m:"phần mềm",e:"The software is easy to use.",h:"Chương trình chạy trên máy tính."}
+  ],
+  "Daily Routine":[
+    {w:"commute",m:"đi lại hằng ngày",e:"I commute to school by bus.",h:"Di chuyển thường xuyên giữa nhà và trường hoặc nơi làm việc."},
+    {w:"prepare",m:"chuẩn bị",e:"I prepare my bag at night.",h:"Làm sẵn trước khi bắt đầu."},
+    {w:"attend",m:"tham dự",e:"I attend class every morning.",h:"Có mặt tại một lớp học hoặc sự kiện."},
+    {w:"review",m:"ôn lại",e:"I review new words before bed.",h:"Xem lại kiến thức đã học."},
+    {w:"schedule",m:"lịch trình",e:"My schedule is busy today.",h:"Danh sách công việc theo thời gian."},
+    {w:"habit",m:"thói quen",e:"Reading is a good habit.",h:"Việc thường xuyên lặp lại."},
+    {w:"exercise",m:"tập thể dục",e:"I exercise for thirty minutes.",h:"Hoạt động giúp cơ thể khỏe hơn."},
+    {w:"relax",m:"thư giãn",e:"I relax after finishing my homework.",h:"Nghỉ ngơi để giảm căng thẳng."}
+  ],
+  "Food":[
+    {w:"ingredient",m:"nguyên liệu",e:"Rice is the main ingredient.",h:"Thành phần dùng để nấu món ăn."},
+    {w:"delicious",m:"ngon",e:"The soup is delicious.",h:"Có vị làm người ăn thích."},
+    {w:"healthy",m:"tốt cho sức khỏe",e:"Vegetables are healthy.",h:"Có lợi cho cơ thể."},
+    {w:"beverage",m:"đồ uống",e:"Tea is a popular beverage.",h:"Thứ dùng để uống."},
+    {w:"recipe",m:"công thức nấu ăn",e:"This recipe is simple.",h:"Hướng dẫn các bước nấu món ăn."},
+    {w:"portion",m:"khẩu phần",e:"This portion is enough for one person.",h:"Lượng thức ăn dành cho một người."},
+    {w:"boil",m:"luộc; đun sôi",e:"Boil the water first.",h:"Làm nóng chất lỏng đến khi sôi."},
+    {w:"fresh",m:"tươi",e:"The fruit is fresh.",h:"Mới và chưa bị hỏng."}
+  ],
+  "Travel":[
+    {w:"destination",m:"điểm đến",e:"Da Lat is our destination.",h:"Nơi chuyến đi hướng tới."},
+    {w:"luggage",m:"hành lý",e:"My luggage is light.",h:"Túi và đồ mang theo khi đi xa."},
+    {w:"ticket",m:"vé",e:"I bought a bus ticket.",h:"Giấy hoặc mã cho phép sử dụng dịch vụ di chuyển."},
+    {w:"journey",m:"chuyến đi",e:"The journey took three hours.",h:"Quá trình đi từ nơi này đến nơi khác."},
+    {w:"accommodation",m:"chỗ ở",e:"We booked cheap accommodation.",h:"Nơi ở tạm trong chuyến đi."},
+    {w:"departure",m:"sự khởi hành",e:"The departure time is 7 a.m.",h:"Thời điểm bắt đầu rời đi."},
+    {w:"arrive",m:"đến nơi",e:"We arrive in the afternoon.",h:"Tới điểm cuối của chuyến đi."},
+    {w:"explore",m:"khám phá",e:"We explore the old town.",h:"Đi tìm hiểu một nơi mới."}
+  ]
+};
+let selectedTopic="Campus Life", questions=[], current=0, correct=0, mistakes=[], answered=false;
+const $=id=>document.getElementById(id);
+function show(screen){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));$(screen).classList.remove('hidden')}
+function getStats(){return JSON.parse(localStorage.getItem('vocabai_stats')||'{}')}
+function saveStats(s){localStorage.setItem('vocabai_stats',JSON.stringify(s))}
+function topicCards(){const grid=$('topicGrid');grid.innerHTML='';Object.keys(topics).forEach((t,i)=>{const b=document.createElement('button');b.className='topic'+(t===selectedTopic?' active':'');b.innerHTML=`<b>${t}</b><small>${topics[t].length} từ mẫu</small>`;b.onclick=()=>{selectedTopic=t;topicCards()};grid.appendChild(b)})}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function selectAdaptive(topic,count=10){const stats=getStats();let pool=topics[topic].map(x=>{const st=stats[x.w]||{correct:0,wrong:0,last:0};const days=(Date.now()-st.last)/86400000;const weight=1+st.wrong*2-Math.min(st.correct*.25,1)+(days>2?1:0);return {...x,weight:Math.max(.3,weight)}});let chosen=[];while(chosen.length<Math.min(count,pool.length)){const total=pool.reduce((s,x)=>s+x.weight,0);let r=Math.random()*total,idx=0;for(;idx<pool.length;idx++){r-=pool[idx].weight;if(r<=0)break}chosen.push(pool.splice(Math.min(idx,pool.length-1),1)[0])}while(chosen.length<count)chosen.push(...shuffle(topics[topic]).slice(0,Math.min(count-chosen.length,topics[topic].length)));return chosen.slice(0,count)}
+function wrongOptions(item){let values=[];Object.values(topics).flat().forEach(x=>{if(x.m!==item.m&&!values.includes(x.m))values.push(x.m)});return shuffle(values).slice(0,3)}
+function renderQuestion(){answered=false;$('feedback').className='feedback hidden';$('nextBtn').classList.add('hidden');$('hintBtn').classList.remove('hidden');const q=questions[current];$('topicTitle').textContent=`Chủ đề: ${selectedTopic}`;$('counter').textContent=`Câu ${current+1}/${questions.length}`;$('progress').style.width=`${(current/questions.length)*100}%`;$('word').textContent=q.w;$('prompt').textContent='Từ trên có nghĩa gần đúng nhất là gì?';const opts=shuffle([q.m,...wrongOptions(q)]);$('answers').innerHTML='';opts.forEach((o,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span>${o}`;b.onclick=()=>choose(b,o,q);$('answers').appendChild(b)})}
+function choose(btn,opt,q){if(answered)return;answered=true;const ok=opt===q.m;const stats=getStats(),st=stats[q.w]||{correct:0,wrong:0,last:0};st.last=Date.now();if(ok){correct++;st.correct++;btn.classList.add('correct');$('feedback').className='feedback ok';$('feedback').innerHTML=`<b>Chính xác.</b> ${q.w} nghĩa là “${q.m}”.<br><b>Ví dụ:</b> ${q.e}`}else{st.wrong++;mistakes.push(q);btn.classList.add('wrong');document.querySelectorAll('.answer').forEach(x=>{if(x.textContent.includes(q.m))x.classList.add('correct')});$('feedback').className='feedback bad';$('feedback').innerHTML=`<b>Chưa đúng.</b> Đáp án là “${q.m}”.<br><b>Ví dụ:</b> ${q.e}`}stats[q.w]=st;saveStats(stats);$('nextBtn').classList.remove('hidden');$('hintBtn').classList.add('hidden')}
+function start(topic=selectedTopic){selectedTopic=topic;questions=selectAdaptive(topic,10);current=0;correct=0;mistakes=[];show('quiz');renderQuestion()}
+function finish(){show('result');$('score').textContent=Math.round(correct/questions.length*100);$('correctCount').textContent=correct;$('wrongCount').textContent=questions.length-correct;let list=mistakes.length?mistakes:[{w:'Không có',m:'Bạn đã trả lời đúng tất cả',h:'Hãy thử chủ đề khác.'}];$('weakList').innerHTML=list.slice(0,5).map(x=>`<div class="weak"><div><b>${x.w}</b><br><em>${x.m}</em></div><span>${x.h}</span></div>`).join('');$('aiAdvice').textContent=mistakes.length?`Ưu tiên ôn ${mistakes.slice(0,3).map(x=>x.w).join(', ')} sau 1 ngày. Sau đó làm lại một lượt ngắn để kiểm tra.`:'Bạn đã hoàn thành tốt. Có thể chuyển sang chủ đề mới hoặc tăng độ khó.'}
+$('startBtn').onclick=()=>start();$('resetBtn').onclick=()=>{localStorage.removeItem('vocabai_stats');alert('Đã xóa lịch sử học.');};$('hintBtn').onclick=()=>{const q=questions[current];$('feedback').className='feedback';$('feedback').innerHTML=`<b>Gợi ý AI:</b> ${q.h}`};$('nextBtn').onclick=()=>{current++;if(current>=questions.length)finish();else renderQuestion()};$('homeBtn').onclick=()=>{show('home');topicCards()};$('retryBtn').onclick=()=>start(selectedTopic);
+function demoMode(){const p=new URLSearchParams(location.search),s=p.get('screen');if(s==='quiz'){selectedTopic='Campus Life';questions=topics[selectedTopic].slice(0,10);current=2;show('quiz');renderQuestion();$('feedback').className='feedback';$('feedback').innerHTML='<b>Gợi ý AI:</b> Đây là nơi sinh viên mượn sách và học nhóm.';}else if(s==='result'){selectedTopic='Campus Life';questions=topics[selectedTopic].slice(0,8);correct=6;mistakes=[topics[selectedTopic][1],topics[selectedTopic][2]];finish();}else{show('home')}}
+topicCards();demoMode();
+</script>
+</body>
+</html>
