@@ -30,7 +30,7 @@ button{border:0;border-radius:12px;padding:13px 18px;font-weight:700;cursor:poin
   <div class="hero">
     <div class="card">
       <h1>Học từ vựng qua câu hỏi ngắn và gợi ý phù hợp</h1>
-      <p class="lead">Mỗi lượt gồm 10 câu. Hệ thống ưu tiên những từ người học hay sai, đưa phản hồi ngay và đề xuất từ cần ôn lại.</p>
+      <p class="lead">Mỗi chủ đề có 20 từ vựng và mỗi lượt gồm 10 câu không trùng nhau. Hệ thống ưu tiên những từ người học hay sai, đưa phản hồi ngay và đề xuất từ cần ôn lại.</p>
       <div class="feature"><div class="icon">1</div><div><b>Chọn chủ đề</b><div class="lead" style="font-size:15px">Từ vựng gần với đời sống sinh viên.</div></div></div>
       <div class="feature"><div class="icon">2</div><div><b>Làm quiz và nhận phản hồi</b><div class="lead" style="font-size:15px">Biết đúng, sai và xem ví dụ ngay sau mỗi câu.</div></div></div>
       <div class="feature"><div class="icon">3</div><div><b>Ôn lại từ khó</b><div class="lead" style="font-size:15px">Lịch sử làm bài được dùng để chọn câu hỏi phù hợp hơn.</div></div></div>
@@ -86,7 +86,19 @@ const topics={
     {w:"semester",m:"học kỳ",e:"This semester has fifteen weeks.",h:"Một giai đoạn học trong năm học."},
     {w:"scholarship",m:"học bổng",e:"She received a scholarship.",h:"Khoản hỗ trợ học tập dựa trên thành tích hoặc hoàn cảnh."},
     {w:"laboratory",m:"phòng thí nghiệm",e:"We practice in the computer laboratory.",h:"Nơi thực hành và làm thí nghiệm."},
-    {w:"deadline",m:"hạn chót",e:"The deadline is next Monday.",h:"Thời điểm cuối cùng phải hoàn thành công việc."}
+    {w:"deadline",m:"hạn chót",e:"The deadline is next Monday.",h:"Thời điểm cuối cùng phải hoàn thành công việc."},
+    {w:"classroom",m:"phòng học",e:"Our classroom is on the second floor.",h:"Nơi sinh viên học cùng giảng viên."},
+    {w:"professor",m:"giảng viên",e:"The professor explains the lesson clearly.",h:"Người dạy học ở trường đại học."},
+    {w:"classmate",m:"bạn cùng lớp",e:"My classmate helps me with this exercise.",h:"Người học chung một lớp với bạn."},
+    {w:"textbook",m:"sách giáo khoa",e:"I bring my English textbook to class.",h:"Sách chính được dùng trong một môn học."},
+    {w:"cafeteria",m:"căn tin",e:"We have lunch in the cafeteria.",h:"Nơi bán thức ăn và đồ uống trong trường."},
+    {w:"attendance",m:"sự có mặt; điểm danh",e:"Good attendance is important in this course.",h:"Việc có mặt đầy đủ trong các buổi học."},
+    {w:"exam",m:"kỳ thi",e:"The final exam is in July.",h:"Bài kiểm tra quan trọng vào cuối môn học."},
+    {w:"grade",m:"điểm số",e:"She got a good grade in English.",h:"Kết quả được ghi bằng số hoặc chữ sau bài kiểm tra."},
+    {w:"project",m:"dự án",e:"Our group is working on a small project.",h:"Công việc lớn được thực hiện trong một khoảng thời gian."},
+    {w:"presentation",m:"bài thuyết trình",e:"I prepare slides for my presentation.",h:"Phần trình bày một nội dung trước lớp."},
+    {w:"campus",m:"khuôn viên trường",e:"The campus is quiet in the evening.",h:"Khu vực gồm các tòa nhà và sân của trường."},
+    {w:"club",m:"câu lạc bộ",e:"I joined the English club last month.",h:"Nhóm sinh viên cùng tham gia một hoạt động chung."}
   ],
   "Technology":[
     {w:"upload",m:"tải lên",e:"Please upload the file.",h:"Đưa tệp từ máy lên hệ thống."},
@@ -96,7 +108,19 @@ const topics={
     {w:"password",m:"mật khẩu",e:"Use a strong password.",h:"Chuỗi bí mật để đăng nhập."},
     {w:"browser",m:"trình duyệt",e:"Open the page in a browser.",h:"Phần mềm dùng để mở trang web."},
     {w:"device",m:"thiết bị",e:"This device has a touch screen.",h:"Máy hoặc công cụ điện tử."},
-    {w:"software",m:"phần mềm",e:"The software is easy to use.",h:"Chương trình chạy trên máy tính."}
+    {w:"software",m:"phần mềm",e:"The software is easy to use.",h:"Chương trình chạy trên máy tính."},
+    {w:"keyboard",m:"bàn phím",e:"I type the answer on the keyboard.",h:"Thiết bị có các phím dùng để nhập chữ và số."},
+    {w:"screen",m:"màn hình",e:"The screen is bright and clear.",h:"Bộ phận hiển thị hình ảnh và nội dung."},
+    {w:"application",m:"ứng dụng",e:"This application helps students learn words.",h:"Chương trình được tạo để thực hiện một công việc cụ thể."},
+    {w:"file",m:"tệp tin",e:"Save the file before closing the program.",h:"Nơi lưu một nội dung trên máy tính."},
+    {w:"folder",m:"thư mục",e:"The pictures are in this folder.",h:"Nơi chứa và sắp xếp nhiều tệp tin."},
+    {w:"internet",m:"mạng Internet",e:"I use the Internet to find information.",h:"Mạng kết nối các máy tính trên toàn thế giới."},
+    {w:"website",m:"trang web",e:"The course has its own website.",h:"Một trang thông tin được mở bằng trình duyệt."},
+    {w:"account",m:"tài khoản",e:"You need an account to log in.",h:"Thông tin riêng dùng để sử dụng một dịch vụ."},
+    {w:"login",m:"đăng nhập",e:"Click here to login to the system.",h:"Vào hệ thống bằng tài khoản và mật khẩu."},
+    {w:"update",m:"cập nhật",e:"Please update the software today.",h:"Thay phiên bản cũ bằng thông tin hoặc phiên bản mới."},
+    {w:"backup",m:"sao lưu",e:"I make a backup of my important files.",h:"Tạo thêm một bản dữ liệu để tránh bị mất."},
+    {w:"code",m:"mã lập trình",e:"The student writes code for the quiz game.",h:"Các câu lệnh dùng để tạo ra chương trình."}
   ],
   "Daily Routine":[
     {w:"commute",m:"đi lại hằng ngày",e:"I commute to school by bus.",h:"Di chuyển thường xuyên giữa nhà và trường hoặc nơi làm việc."},
@@ -106,7 +130,19 @@ const topics={
     {w:"schedule",m:"lịch trình",e:"My schedule is busy today.",h:"Danh sách công việc theo thời gian."},
     {w:"habit",m:"thói quen",e:"Reading is a good habit.",h:"Việc thường xuyên lặp lại."},
     {w:"exercise",m:"tập thể dục",e:"I exercise for thirty minutes.",h:"Hoạt động giúp cơ thể khỏe hơn."},
-    {w:"relax",m:"thư giãn",e:"I relax after finishing my homework.",h:"Nghỉ ngơi để giảm căng thẳng."}
+    {w:"relax",m:"thư giãn",e:"I relax after finishing my homework.",h:"Nghỉ ngơi để giảm căng thẳng."},
+    {w:"wake up",m:"thức dậy",e:"I wake up at six every morning.",h:"Ngừng ngủ và bắt đầu một ngày mới."},
+    {w:"breakfast",m:"bữa sáng",e:"I eat breakfast before going to school.",h:"Bữa ăn đầu tiên trong ngày."},
+    {w:"shower",m:"tắm",e:"I take a shower after exercising.",h:"Làm sạch cơ thể bằng nước."},
+    {w:"brush",m:"chải; đánh",e:"I brush my teeth twice a day.",h:"Dùng bàn chải để làm sạch răng hoặc tóc."},
+    {w:"study",m:"học tập",e:"I study English for one hour.",h:"Dành thời gian để học kiến thức mới."},
+    {w:"cook",m:"nấu ăn",e:"My mother cooks dinner at home.",h:"Chuẩn bị thức ăn bằng cách làm chín."},
+    {w:"clean",m:"dọn dẹp; làm sạch",e:"I clean my room every Sunday.",h:"Làm cho một nơi không còn bụi bẩn hoặc lộn xộn."},
+    {w:"sleep",m:"ngủ",e:"I sleep for about seven hours.",h:"Nghỉ ngơi vào ban đêm."},
+    {w:"organize",m:"sắp xếp",e:"I organize my books on the desk.",h:"Đặt mọi thứ theo thứ tự gọn gàng."},
+    {w:"complete",m:"hoàn thành",e:"I complete my homework before dinner.",h:"Làm xong một công việc."},
+    {w:"practice",m:"luyện tập",e:"I practice speaking English every day.",h:"Làm đi làm lại để tiến bộ hơn."},
+    {w:"check",m:"kiểm tra",e:"I check my email in the morning.",h:"Xem lại để biết thông tin có đúng hoặc có thay đổi không."}
   ],
   "Food":[
     {w:"ingredient",m:"nguyên liệu",e:"Rice is the main ingredient.",h:"Thành phần dùng để nấu món ăn."},
@@ -116,7 +152,19 @@ const topics={
     {w:"recipe",m:"công thức nấu ăn",e:"This recipe is simple.",h:"Hướng dẫn các bước nấu món ăn."},
     {w:"portion",m:"khẩu phần",e:"This portion is enough for one person.",h:"Lượng thức ăn dành cho một người."},
     {w:"boil",m:"luộc; đun sôi",e:"Boil the water first.",h:"Làm nóng chất lỏng đến khi sôi."},
-    {w:"fresh",m:"tươi",e:"The fruit is fresh.",h:"Mới và chưa bị hỏng."}
+    {w:"fresh",m:"tươi",e:"The fruit is fresh.",h:"Mới và chưa bị hỏng."},
+    {w:"meal",m:"bữa ăn",e:"Dinner is my main meal of the day.",h:"Phần thức ăn được dùng vào một thời điểm trong ngày."},
+    {w:"breakfast",m:"bữa sáng",e:"Breakfast gives me energy for class.",h:"Bữa ăn đầu tiên trong ngày."},
+    {w:"lunch",m:"bữa trưa",e:"We have lunch at twelve.",h:"Bữa ăn vào giữa ngày."},
+    {w:"dinner",m:"bữa tối",e:"My family eats dinner together.",h:"Bữa ăn vào buổi tối."},
+    {w:"spicy",m:"cay",e:"This noodle soup is very spicy.",h:"Có vị cay do ớt hoặc gia vị."},
+    {w:"sweet",m:"ngọt",e:"The cake is too sweet for me.",h:"Có vị giống đường hoặc mật."},
+    {w:"sour",m:"chua",e:"The lemon tastes sour.",h:"Có vị chua như chanh."},
+    {w:"salty",m:"mặn",e:"The soup is a little salty.",h:"Có nhiều vị muối."},
+    {w:"bake",m:"nướng bằng lò",e:"We bake the bread for twenty minutes.",h:"Làm chín thức ăn bằng nhiệt trong lò."},
+    {w:"fry",m:"chiên; rán",e:"She fries the eggs for breakfast.",h:"Làm chín thức ăn trong dầu nóng."},
+    {w:"chop",m:"cắt nhỏ",e:"Chop the vegetables before cooking.",h:"Dùng dao cắt thức ăn thành miếng nhỏ."},
+    {w:"serve",m:"phục vụ; dọn món",e:"They serve rice with grilled chicken.",h:"Đưa thức ăn hoặc đồ uống cho người dùng."}
   ],
   "Travel":[
     {w:"destination",m:"điểm đến",e:"Da Lat is our destination.",h:"Nơi chuyến đi hướng tới."},
@@ -126,7 +174,19 @@ const topics={
     {w:"accommodation",m:"chỗ ở",e:"We booked cheap accommodation.",h:"Nơi ở tạm trong chuyến đi."},
     {w:"departure",m:"sự khởi hành",e:"The departure time is 7 a.m.",h:"Thời điểm bắt đầu rời đi."},
     {w:"arrive",m:"đến nơi",e:"We arrive in the afternoon.",h:"Tới điểm cuối của chuyến đi."},
-    {w:"explore",m:"khám phá",e:"We explore the old town.",h:"Đi tìm hiểu một nơi mới."}
+    {w:"explore",m:"khám phá",e:"We explore the old town.",h:"Đi tìm hiểu một nơi mới."},
+    {w:"passport",m:"hộ chiếu",e:"Keep your passport in a safe place.",h:"Giấy tờ cần dùng khi đi sang nước khác."},
+    {w:"airport",m:"sân bay",e:"We arrive at the airport two hours early.",h:"Nơi máy bay cất cánh và hạ cánh."},
+    {w:"station",m:"nhà ga; trạm",e:"The train station is near the hotel.",h:"Nơi xe lửa hoặc xe buýt dừng đón khách."},
+    {w:"hotel",m:"khách sạn",e:"Our hotel has a small swimming pool.",h:"Nơi khách thuê phòng để ở trong chuyến đi."},
+    {w:"map",m:"bản đồ",e:"I use a map to find the museum.",h:"Hình thể hiện đường đi và vị trí các nơi."},
+    {w:"tourist",m:"khách du lịch",e:"Many tourists visit this beach in summer.",h:"Người đi đến một nơi để tham quan hoặc nghỉ ngơi."},
+    {w:"guide",m:"hướng dẫn viên; hướng dẫn",e:"The guide tells us about the old temple.",h:"Người chỉ đường và giới thiệu thông tin trong chuyến đi."},
+    {w:"suitcase",m:"va li",e:"My clothes are in the suitcase.",h:"Loại túi lớn dùng để mang đồ khi đi xa."},
+    {w:"reservation",m:"sự đặt chỗ",e:"I made a hotel reservation online.",h:"Việc giữ trước phòng, bàn hoặc vé."},
+    {w:"delay",m:"sự chậm trễ",e:"The flight has a thirty-minute delay.",h:"Việc bắt đầu hoặc đến muộn hơn dự kiến."},
+    {w:"visit",m:"tham quan; thăm",e:"We visit the museum in the morning.",h:"Đi đến một nơi để gặp người hoặc xem địa điểm."},
+    {w:"return",m:"trở về",e:"We return home on Sunday evening.",h:"Đi lại nơi đã bắt đầu chuyến đi."}
   ]
 };
 let selectedTopic="Campus Life", questions=[], current=0, correct=0, mistakes=[], answered=false;
