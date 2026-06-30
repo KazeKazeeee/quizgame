@@ -1,0 +1,21 @@
+/* Giao diện và bố cục của VocabAI Quiz */
+:root{--primary:#2767d8;--primary2:#6f42c1;--bg:#f4f7fb;--card:#fff;--text:#1f2a44;--muted:#68738b;--ok:#198754;--bad:#dc3545;--warn:#f0ad4e;--shadow:0 12px 30px rgba(33,53,85,.12)}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eef4ff,#f8f4ff);color:var(--text);min-height:100vh}
+header{height:68px;background:#fff;border-bottom:1px solid #e4e9f2;display:flex;align-items:center;justify-content:space-between;padding:0 42px;position:sticky;top:0;z-index:5}
+.brand{font-weight:800;font-size:24px;color:var(--primary)} .brand span{color:var(--primary2)}
+.badge{background:#eef4ff;color:var(--primary);padding:8px 13px;border-radius:20px;font-weight:700;font-size:13px}
+main{max-width:1100px;margin:0 auto;padding:42px 28px 60px}.hidden{display:none!important}
+.hero{display:grid;grid-template-columns:1.3fr .8fr;gap:30px;align-items:stretch}.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:34px}
+h1{font-size:42px;line-height:1.15;margin:0 0 15px}.lead{font-size:18px;line-height:1.65;color:var(--muted)}
+.feature{display:flex;gap:12px;margin:18px 0}.icon{width:38px;height:38px;border-radius:12px;background:#eef4ff;display:grid;place-items:center;font-weight:800;color:var(--primary)}
+.topic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}.topic{border:1px solid #dfe6f2;border-radius:14px;padding:15px;cursor:pointer;background:#fff;text-align:left}.topic:hover,.topic.active{border-color:var(--primary);background:#f2f6ff}.topic b{display:block;margin-bottom:4px}.topic small{color:var(--muted)}
+button{border:0;border-radius:12px;padding:13px 18px;font-weight:700;cursor:pointer;font-size:15px}.btn-primary{background:linear-gradient(90deg,var(--primary),var(--primary2));color:#fff}.btn-secondary{background:#eef1f6;color:var(--text)}.btn-hint{background:#fff4db;color:#8b5a00;border:1px solid #f4d58b}.wide{width:100%;margin-top:18px}
+.progress-wrap{height:11px;background:#e7ecf5;border-radius:20px;overflow:hidden}.progress{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));width:30%}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.question{font-size:30px;font-weight:800;margin:20px 0 10px}.sub{color:var(--muted);margin-bottom:22px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:13px}.answer{padding:16px;border:1px solid #dfe6f2;border-radius:14px;background:#fff;text-align:left;font-size:16px}.answer:hover{border-color:var(--primary);background:#f4f7ff}.answer.correct{border-color:var(--ok);background:#eaf7ef}.answer.wrong{border-color:var(--bad);background:#fff0f1}.letter{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#eef1f6;margin-right:10px;font-weight:800}
+.feedback{margin-top:18px;border-radius:14px;padding:17px;background:#f5f8fd;border-left:5px solid var(--primary);line-height:1.55}.feedback.ok{border-left-color:var(--ok);background:#edf8f1}.feedback.bad{border-left-color:var(--bad);background:#fff1f2}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}.stat{padding:18px;border-radius:16px;background:#f6f8fc;text-align:center}.stat strong{font-size:30px;display:block}.weak-list{display:grid;gap:10px}.weak{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border:1px solid #e2e7f0;border-radius:12px}.weak em{font-style:normal;color:var(--muted);font-size:14px}.ai-box{background:linear-gradient(135deg,#eef4ff,#f7efff);border:1px solid #dce5fb;border-radius:16px;padding:18px;margin:18px 0;line-height:1.6}.footer-note{text-align:center;color:var(--muted);margin-top:32px;font-size:13px}
+@media(max-width:760px){header{padding:0 18px}.hero{grid-template-columns:1fr}.answers,.topic-grid,.stat-grid{grid-template-columns:1fr}h1{font-size:32px}main{padding:25px 16px}}
+
+.lead-small{font-size:15px}
+.no-top-margin{margin-top:0}
+.result-title{font-size:34px}
